@@ -1,28 +1,32 @@
 <template>
   <nav class="container" style="width: 90%; margin: auto;">
     <main>
-
       <div class="logo">
         <img src="/src/assets/logo.png" alt="Logo">
       </div>
 
-      <!-- زر القائمة ☰ -->
-      <label for="menu-toggle" class="menu-icon">☰</label>
-      <input type="checkbox" id="menu-toggle" class="menu-toggle">
+      <label for="menu-toggle" class="menu-icon" @click="menuOpen = !menuOpen">☰</label>
 
-      <!-- القائمة -->
-   <!-- القائمة -->
-<ul class="menu">
-  <li><router-link :to="{ name: 'home' }">Home</router-link></li>
-  <li><router-link :to="{ name: 'about' }">About us</router-link></li>
-  <li><router-link :to="{ name: 'ourservices' }">Our Services</router-link></li>
-  <li><router-link :to="{name:'healthcareservies'}">Health Care Services</router-link></li>
-  <li><router-link :to="{name:'contactus'}">Contact Us</router-link></li>
-</ul>
-
+      <ul class="menu" :class="{ 'menu-open': menuOpen }">
+        <li @click="closeMenu"><router-link :to="{ name: 'home' }">Home</router-link></li>
+        <li @click="closeMenu"><router-link :to="{ name: 'about' }">About us</router-link></li>
+        <li @click="closeMenu"><router-link :to="{ name: 'ourservices' }">Our Services</router-link></li>
+        <li @click="closeMenu"><router-link :to="{ name: 'healthcareservies' }">Health Care Services</router-link></li>
+        <li @click="closeMenu"><router-link :to="{ name: 'contactus' }">Contact Us</router-link></li>
+      </ul>
     </main>
   </nav>
 </template>
+
+<script setup>
+import { ref } from 'vue';
+
+const menuOpen = ref(false);
+
+const closeMenu = () => {
+  menuOpen.value = false;
+};
+</script>
 
 <style scoped>
 main {
@@ -30,9 +34,7 @@ main {
   justify-content: space-between;
   align-items: center;
   padding: 0 20px;
-  position: relative; 
-  margin-top: 0;
- 
+  position: relative;
 }
 
 .logo {
@@ -43,7 +45,6 @@ main {
   width: 100%;
 }
 
-/* تصميم القائمة */
 .menu {
   list-style: none;
   padding: 0;
@@ -57,21 +58,17 @@ main {
 }
 
 .menu a {
-  font-size: 22px;
+  font-size: 1.2vw;
   text-decoration: none;
   color: #D4AF37;
-  padding: 8px 12px;
+  padding: 2px 10px;
   display: block;
+  width: fit-content;
 }
 
 .menu a:hover {
   background-color: rgba(194, 135, 135, 0.2);
   border-radius: 10px;
-}
-
-/* زر القائمة ☰ */
-#menu-toggle {
-  display: none;
 }
 
 .menu-icon {
@@ -81,23 +78,28 @@ main {
   color: #D4AF37;
 }
 
-
-@media (max-width: 768px) {
+@media (max-width: 820px) {
   .menu {
-    display: none;
+    display: flex;
     flex-direction: column;
     position: absolute;
     top: 60px;
     left: 0;
     width: 100%;
-    background-color: rgba(6, 1, 1, 0.95);
+    background-color: rgba(33, 2, 28, 0.662);
     text-align: center;
     padding: 10px 0;
-    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
     transform: translateY(-20px);
     opacity: 0;
     pointer-events: none;
-    width: 90%;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    z-index: 100;
+  }
+
+  .menu.menu-open {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
   }
 
   .menu li {
@@ -108,20 +110,12 @@ main {
     display: block;
   }
 
- 
-  #menu-toggle:checked + .menu {
-    display: flex;
-    transform: translateY(0);
-    opacity: 1;
-    pointer-events: auto;
+  .logo {
+    width: 39%;
   }
 
-  .logo  {
-  width: 39%;
-}
-
-main{
-  width: 100%;
-}
+  main {
+    width: 100%;
+  }
 }
 </style>

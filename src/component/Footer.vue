@@ -3,11 +3,11 @@
       <div class="row">
         <div class="col">
           <ul>
-            <li>Home</li>
-            <li>About Us</li>
-            <li>Our Services</li>
-            <li>Health Care Services</li>
-            <li>Contact Us</li>
+            <li><router-link :to="{ name: 'home' }">Home</router-link></li>
+  <li><router-link :to="{ name: 'about' }">About us</router-link></li>
+  <li><router-link :to="{ name: 'ourservices' }">Our Services</router-link></li>
+  <li><router-link :to="{name:'healthcareservies'}">Health Care Services</router-link></li>
+  <li><router-link :to="{name:'contactus'}">Contact Us</router-link></li>
           </ul>
           <img style="width: 25vw;" src="/src/assets/logo second.png" alt="Company Logo">
         </div>
@@ -72,11 +72,16 @@
     padding: 0;
   }
   
-  li {
+  li, a {
     color: #41113D;
     font-size: 20px;
     margin: 10px 0;
     text-align: start;
+   
+  }
+  a{
+    text-decoration: none;
+    color: #41113D;
   }
   
   .row {
