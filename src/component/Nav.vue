@@ -86,7 +86,7 @@ main {
     top: 60px;
     left: 0;
     width: 100%;
-    background-color: rgba(33, 2, 28, 0.662);
+    background-color: rgba(33, 2, 28, 0.89);
     text-align: center;
     padding: 10px 0;
     transform: translateY(-20px);
@@ -96,6 +96,7 @@ main {
     z-index: 100;
   }
 
+
   .menu.menu-open {
     transform: translateY(0);
     opacity: 1;
@@ -104,7 +105,10 @@ main {
 
   .menu li {
     padding: 10px 0;
+  
   }
+
+  
 
   .menu-icon {
     display: block;
@@ -116,6 +120,9 @@ main {
 
   main {
     width: 100%;
+  }
+  a{
+    font-size: 15px !important;
   }
 }
 </style>
